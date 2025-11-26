@@ -103,7 +103,7 @@
     - `github oauth app`在`Settings`->`Developer settings`->`OAuth Apps`->`New OAuth App`
       中创建,地址 [https://github.com/settings/developers](https://github.com/settings/developers)
     - `Authorization callback URL`填写`http://<your server[:port]>/api/oidc/callback`
-      ，比如`http://127.0.0.1:21114/api/oidc/callback`
+      ，比如`http://127.0.0.1:31114/api/oidc/callback`
 7. 登录日志
 8. 链接日志
 9. 文件传输日志
@@ -189,9 +189,9 @@
 | RUSTDESK_API_MYSQL_DBNAME                              | mysql数据库名                                                                      | rustdesk                     |
 | RUSTDESK_API_MYSQL_TLS                             | 是否启用TLS, 可选值: `true`, `false`, `skip-verify`, `custom` | `false`                      |
 | -----RUSTDESK配置-----                                   | ----------                                                                     | ----------                   |
-| RUSTDESK_API_RUSTDESK_ID_SERVER                        | Rustdesk的id服务器地址                                                               | 192.168.1.66:21116           |
-| RUSTDESK_API_RUSTDESK_RELAY_SERVER                     | Rustdesk的relay服务器地址                                                            | 192.168.1.66:21117           |
-| RUSTDESK_API_RUSTDESK_API_SERVER                       | Rustdesk的api服务器地址                                                              | http://192.168.1.66:21114    |
+| RUSTDESK_API_RUSTDESK_ID_SERVER                        | Rustdesk的id服务器地址                                                               | 192.168.1.66:31116           |
+| RUSTDESK_API_RUSTDESK_RELAY_SERVER                     | Rustdesk的relay服务器地址                                                            | 192.168.1.66:31117           |
+| RUSTDESK_API_RUSTDESK_API_SERVER                       | Rustdesk的api服务器地址                                                              | http://192.168.1.66:31114    |
 | RUSTDESK_API_RUSTDESK_KEY                              | Rustdesk的key                                                                   | 123456789                    |
 | RUSTDESK_API_RUSTDESK_KEY_FILE                         | Rustdesk存放key的文件                                                               | `./conf/data/id_ed25519.pub` |
 | RUSTDESK_API_RUSTDESK_WEBCLIENT<br/>_MAGIC_QUERYONLINE | Web client v2 中是否启用新的在线状态查询方法; `1`:启用,`0`:不启用,默认不启用                            | `0`                          |
@@ -211,13 +211,13 @@
 1. 直接docker运行,配置可以通过挂载配置文件`/app/conf/config.yaml`来修改,或者通过环境变量覆盖配置文件中的配置
 
     ```bash
-    docker run -d --name rustdesk-api -p 21114:21114 \
+    docker run -d --name rustdesk-api -p 31114:31114 \
     -v /data/rustdesk/api:/app/data \
     -e TZ=Asia/Shanghai \
     -e RUSTDESK_API_LANG=zh-CN \
-    -e RUSTDESK_API_RUSTDESK_ID_SERVER=192.168.1.66:21116 \
-    -e RUSTDESK_API_RUSTDESK_RELAY_SERVER=192.168.1.66:21117 \
-    -e RUSTDESK_API_RUSTDESK_API_SERVER=http://192.168.1.66:21114 \
+    -e RUSTDESK_API_RUSTDESK_ID_SERVER=192.168.1.66:31116 \
+    -e RUSTDESK_API_RUSTDESK_RELAY_SERVER=192.168.1.66:31117 \
+    -e RUSTDESK_API_RUSTDESK_API_SERVER=http://192.168.1.66:31114 \
     -e RUSTDESK_API_RUSTDESK_KEY=<key> \
     lejianwen/rustdesk-api
     ```
@@ -286,22 +286,22 @@
  services:
    rustdesk:
      ports:
-       - 21114:21114
-       - 21115:21115
-       - 21116:21116
-       - 21116:21116/udp
-       - 21117:21117
-       - 21118:21118
-       - 21119:21119
+       - 31114:31114
+       - 31115:31115
+       - 31116:31116
+       - 31116:31116/udp
+       - 31117:31117
+       - 31118:31118
+       - 31119:31119
      image: lejianwen/rustdesk-server-s6:latest
      environment:
        - RELAY=<relay_server[:port]>
        - ENCRYPTED_ONLY=1
        - MUST_LOGIN=N
        - TZ=Asia/Shanghai
-       - RUSTDESK_API_RUSTDESK_ID_SERVER=<id_server[:21116]>
-       - RUSTDESK_API_RUSTDESK_RELAY_SERVER=<relay_server[:21117]>
-       - RUSTDESK_API_RUSTDESK_API_SERVER=http://<api_server[:21114]>
+       - RUSTDESK_API_RUSTDESK_ID_SERVER=<id_server[:31116]>
+       - RUSTDESK_API_RUSTDESK_RELAY_SERVER=<relay_server[:31117]>
+       - RUSTDESK_API_RUSTDESK_API_SERVER=http://<api_server[:31114]>
        - RUSTDESK_API_KEY_FILE=/data/id_ed25519.pub
        - RUSTDESK_API_JWT_KEY=xxxxxx # jwt key
      volumes:

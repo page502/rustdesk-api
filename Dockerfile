@@ -6,5 +6,5 @@ RUN apk add --no-cache tzdata
 COPY ./${BUILDARCH}/release /app/
 VOLUME /app/data
 
-EXPOSE 21114
+EXPOSE 31114
 CMD ["./apimain"]

@@ -102,7 +102,7 @@ displaying data.Frontend code is available at [rustdesk-api-web](https://github.
     - Create a `GitHub OAuth App`
       at `Settings` -> `Developer settings` -> `OAuth Apps` -> `New OAuth App` [here](https://github.com/settings/developers).
     - Set the `Authorization callback URL` to `http://<your server[:port]>/api/oidc/callback`,
-      e.g., `http://127.0.0.1:21114/api/oidc/callback`.
+      e.g., `http://127.0.0.1:31114/api/oidc/callback`.
    
 7. Login logs
 8. Connection logs
@@ -187,9 +187,9 @@ The table below does not list all configurations. Please refer to the configurat
 | RUSTDESK_API_MYSQL_DBNAME                              | MySQL database name                                                                                                                                 | rustdesk                      |
 | RUSTDESK_API_MYSQL_TLS                             | Whether to enable TLS, optional values: `true`, `false`, `skip-verify`, `custom` | `false`                       |
 | ----- RUSTDESK Configuration -----                     | ---------------------------------------                                                                                                             | ----------------------------- |
-| RUSTDESK_API_RUSTDESK_ID_SERVER                        | Rustdesk ID server address                                                                                                                          | 192.168.1.66:21116            |
-| RUSTDESK_API_RUSTDESK_RELAY_SERVER                     | Rustdesk relay server address                                                                                                                       | 192.168.1.66:21117            |
-| RUSTDESK_API_RUSTDESK_API_SERVER                       | Rustdesk API server address                                                                                                                         | http://192.168.1.66:21114     |
+| RUSTDESK_API_RUSTDESK_ID_SERVER                        | Rustdesk ID server address                                                                                                                          | 192.168.1.66:31116            |
+| RUSTDESK_API_RUSTDESK_RELAY_SERVER                     | Rustdesk relay server address                                                                                                                       | 192.168.1.66:31117            |
+| RUSTDESK_API_RUSTDESK_API_SERVER                       | Rustdesk API server address                                                                                                                         | http://192.168.1.66:31114     |
 | RUSTDESK_API_RUSTDESK_KEY                              | Rustdesk key                                                                                                                                        | 123456789                     |
 | RUSTDESK_API_RUSTDESK_KEY_FILE                         | Rustdesk key file                                                                                                                                   | `./conf/data/id_ed25519.pub`  |
 | RUSTDESK_API_RUSTDESK<br/>_WEBCLIENT_MAGIC_QUERYONLINE | New online query method is enabled in the web client v2; '1': Enabled, '0': Disabled, not enabled by default                                        | `0`                           |
@@ -209,12 +209,12 @@ The table below does not list all configurations. Please refer to the configurat
    using environment variables to override settings.
     
     ```bash
-    docker run -d --name rustdesk-api -p 21114:21114 \
+    docker run -d --name rustdesk-api -p 31114:31114 \
     -v /data/rustdesk/api:/app/data \
     -e RUSTDESK_API_LANG=en \
-    -e RUSTDESK_API_RUSTDESK_ID_SERVER=192.168.1.66:21116 \
-    -e RUSTDESK_API_RUSTDESK_RELAY_SERVER=192.168.1.66:21117 \
-    -e RUSTDESK_API_RUSTDESK_API_SERVER=http://192.168.1.66:21114 \
+    -e RUSTDESK_API_RUSTDESK_ID_SERVER=192.168.1.66:31116 \
+    -e RUSTDESK_API_RUSTDESK_RELAY_SERVER=192.168.1.66:31117 \
+    -e RUSTDESK_API_RUSTDESK_API_SERVER=http://192.168.1.66:31114 \
     -e RUSTDESK_API_RUSTDESK_KEY=abc123456 \
     lejianwen/rustdesk-api
     ```
@@ -288,22 +288,22 @@ Download the release from [release](https://github.com/lejianwen/rustdesk-api/re
  services:
    rustdesk:
      ports:
-       - 21114:21114
-       - 21115:21115
-       - 21116:21116
-       - 21116:21116/udp
-       - 21117:21117
-       - 21118:21118
-       - 21119:21119
+       - 31114:31114
+       - 31115:31115
+       - 31116:31116
+       - 31116:31116/udp
+       - 31117:31117
+       - 31118:31118
+       - 31119:31119
      image: lejianwen/rustdesk-server-s6:latest
      environment:
        - RELAY=<relay_server[:port]>
        - ENCRYPTED_ONLY=1
        - MUST_LOGIN=N
        - TZ=Asia/Shanghai
-       - RUSTDESK_API_RUSTDESK_ID_SERVER=<id_server[:21116]>
-       - RUSTDESK_API_RUSTDESK_RELAY_SERVER=<relay_server[:21117]>
-       - RUSTDESK_API_RUSTDESK_API_SERVER=http://<api_server[:21114]>
+       - RUSTDESK_API_RUSTDESK_ID_SERVER=<id_server[:31116]>
+       - RUSTDESK_API_RUSTDESK_RELAY_SERVER=<relay_server[:31117]>
+       - RUSTDESK_API_RUSTDESK_API_SERVER=http://<api_server[:31114]>
        - RUSTDESK_API_KEY_FILE=/data/id_ed25519.pub
        - RUSTDESK_API_JWT_KEY=xxxxxx # jwt key
      volumes:

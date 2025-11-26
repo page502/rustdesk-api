@@ -5,8 +5,8 @@ import (
 )
 
 const (
-	DefaultIdServerPort    = 21116
-	DefaultRelayServerPort = 21117
+	DefaultIdServerPort    = 31116
+	DefaultRelayServerPort = 31117
 )
 
 type Rustdesk struct {

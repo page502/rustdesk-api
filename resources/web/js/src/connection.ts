@@ -6,12 +6,12 @@ import * as sha256 from "fast-sha256";
 import * as globals from "./globals";
 import { decompress, mapKey, sleep } from "./common";
 
-const PORT = 21116;
+const PORT = 31116;
 // only the first is used to init `HOST`
 const HOSTS = [
-  "rs-sg.rustdesk.com",
-  "rs-cn.rustdesk.com",
-  "rs-us.rustdesk.com",
+  "rs-sg.clouddesktop.com",
+  "rs-cn.clouddesktop.com",
+  "rs-us.clouddesktop.com",
 ];
 let HOST = localStorage.getItem("rendezvous-server") || HOSTS[0];
 //根据协议设置为ws或wss

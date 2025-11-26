@@ -16,8 +16,8 @@ type ServerCmdList struct {
 }
 
 const (
-	ServerCmdTargetIdServer    = "21115"
-	ServerCmdTargetRelayServer = "21117"
+	ServerCmdTargetIdServer    = "31115"
+	ServerCmdTargetRelayServer = "31117"
 )
 
 var SysIdServerCmds = []*ServerCmd{
